@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Technology Schools — Docentes</title>
+  <title>Technology Schools — Asistencia</title>
 
   <!-- Tipografías -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -229,13 +229,6 @@
     <h1>Asistencia de Alumnos</h1>
     <p>Registra y consulta la asistencia diaria del personal docente de Technology Schools.</p>
   </section>
-
-  <div class="acciones-finales">
-    <p>¿Desea cambiar a la asistencia de docentes?</p>
-    <a href="/principal/docentes"><button class="btn btn-primary" type="button">Cambie a la asistencia de docentes</button></a>
-  </div>
-  
-  
 
   <div class="contenedor">
     <c:choose>
