@@ -11,6 +11,7 @@ CREATE TABLE Usuario (
     email VARCHAR(100) NOT NULL,
     codigo VARCHAR(100) NOT NULL UNIQUE,
     contrasena VARCHAR(255) NOT NULL,
+    fechaCreacion DATE NOT NULL,
     rol_id INT NOT NULL,
     FOREIGN KEY (rol_id) REFERENCES Rol(id)
 );
