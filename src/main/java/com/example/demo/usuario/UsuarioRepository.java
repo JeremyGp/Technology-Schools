@@ -46,9 +46,14 @@ public class UsuarioRepository implements UsuarioDAO {
     @Override
     public void crearUsuario(Usuario usuario) {
         String sql = "INSERT INTO Usuario (nombre, email, codigo, contrasena, fechaCreacion, rol_id) VALUES (?, ?, ?, ?, ?, ?)";
-
-        jdbcTemplate.update(sql, usuario.getNombre(), usuario.getEmail(), usuario.getCodigo(), usuario.getContrasena(),
-                java.sql.Date.valueOf(usuario.getFechaCreacion()), 1);
+        jdbcTemplate.update(sql,
+                usuario.getNombre(),
+                usuario.getEmail(),
+                usuario.getCodigo(),
+                usuario.getContrasena(),
+                java.sql.Date.valueOf(usuario.getFechaCreacion()),
+                usuario.getRol().getId()  //Ahora usa el rol del usuario
+        );
     }
 
     @Override
