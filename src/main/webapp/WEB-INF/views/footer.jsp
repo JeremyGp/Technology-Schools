@@ -127,7 +127,7 @@
         <div class="pie-der">
             <nav>
                 <a href="/principal/index#inicio">Inicio</a>
-                <a href="/principal/docentes">Docentes</a>
+                <a href="/principal/eventos">Inicio</a>
                 <a href="/principal/nosotros">Nosotros</a>
                 <a href="/principal/contacto">Contáctanos</a>
             </nav>
