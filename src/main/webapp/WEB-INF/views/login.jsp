@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -110,9 +109,11 @@
             color: red;
             font-size: 14px;
             margin-bottom: 10px;
+            background-color: #ffe6e6;
+            padding: 10px;
+            border-radius: 8px;
         }
 
-        /* Botón de cierre (X) */
         .cerrar {
             position: absolute;
             top: 20px;
@@ -148,23 +149,41 @@
 
     <div class="formulario">
         <h1>Inicio de Sesión</h1>
-        <form:form action="/usuario/login" method="post" modelAttribute="usuario">
+
+        <!-- Mostrar mensaje de error si existe -->
+        <c:if test="${not empty error}">
+            <div class="error-msg">
+                ${error}
+            </div>
+        </c:if>
+
+        <!-- Formulario HTML estandar (sin Spring Form tags) -->
+        <form action="/usuario/login" method="post">
             <div class="codigo">
-                <form:input path="codigo" id="codigo" type="text" placeholder="Codigo" required="true"/>
+                <input type="text"
+                       name="codigo"
+                       id="codigo"
+                       placeholder="Código"
+                       required
+                       autocomplete="off"/>
             </div>
             <div class="password">
-                <form:input path="contrasena" id="contrasena" type="password" placeholder="Contraseña" required="true"/>
+                <input type="password"
+                       name="contrasena"
+                       id="contrasena"
+                       placeholder="Contraseña"
+                       required/>
             </div>
             <input type="submit" value="Ingresar">
             <div class="registrarse">
                 ¿No tienes cuenta? <a href="/principal/registrar">Regístrate aquí</a>
             </div>
-        </form:form>
+        </form>
     </div>
 
     <a class="cerrar" href="/principal/index">
         <svg xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 -960 960 960" width="36px" fill="#333">
-            <path d="m256-200-56-56 224-224-224-224 56-56 
+            <path d="m256-200-56-56 224-224-224-224 56-56
                      224 224 224-224 56 56-224 224 224 224-56 56
                      -224-224-224 224Z" />
         </svg>
