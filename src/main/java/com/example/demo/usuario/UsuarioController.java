@@ -4,22 +4,18 @@ import java.time.LocalDate;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import com.example.demo.rol.Rol;
 import com.example.demo.rol.RolService;
 
 import jakarta.servlet.http.HttpSession;
-
 
 @Controller
 @RequestMapping("/usuario")
 public class UsuarioController {
     private final UsuarioService usuarioService;
     private final RolService rolService;
-
 
     public UsuarioController(UsuarioService usuarioService, RolService rolService) {
         this.usuarioService = usuarioService;
@@ -44,7 +40,7 @@ public class UsuarioController {
         // Validar que las contraseñas coincidan
         if (!usuario.getContrasena().equals(usuario.getConfirmarContrasena())) {
             model.addAttribute("error", "Las contraseñas no coinciden");
-            return "registrar"; // vuelve al formulario con el error
+            return "registrar";
         }
 
         // Validar longitud mínima
@@ -52,39 +48,80 @@ public class UsuarioController {
             model.addAttribute("error", "La contraseña debe tener al menos 6 caracteres");
             return "registrar";
         }
-        usuario.setFechaCreacion(LocalDate.now()); //Establece fecha de creacion actual
-        usuarioService.crearUsuario(usuario); //Guarda el usuario en la base de datos
-        return "redirect:/principal/login"; //Redirige al login despues de registrarse
+
+        // Asignar rol por defecto (Alumno)
+        Rol rolAlumno = new Rol(1, "Alumno");
+        usuario.setRol(rolAlumno);
+
+        usuario.setFechaCreacion(LocalDate.now());
+        usuarioService.crearUsuario(usuario);
+        return "redirect:/principal/login";
     }
-    
+
     @GetMapping("/login")
     public String mostrarLogin(Model model){
-        model.addAttribute("usuario", new Usuario());
         return "login";
     }
 
     @PostMapping("/login")
-    public String loginUsuario(@ModelAttribute("usuario") Usuario usuario, Model model, HttpSession session){
-        Usuario usuarioDB = usuarioService.buscarPorCodigo(usuario.getCodigo()); //Busca el usuario por email
-        //validar si el usuario existe
+    public String loginUsuario(@RequestParam("codigo") String codigo,
+                               @RequestParam("contrasena") String contrasena,
+                               Model model,
+                               HttpSession session) {
+
+        System.out.println("=== DEBUG LOGIN ===");
+        System.out.println("Código recibido: " + codigo);
+        System.out.println("Contraseña recibida: " + contrasena);
+
+        // Buscar usuario por código
+        Usuario usuarioDB = usuarioService.buscarPorCodigo(codigo);
+
+        System.out.println("Usuario encontrado: " + (usuarioDB != null ? usuarioDB.getNombre() : "null"));
+
+        // Validar si el usuario existe
         if (usuarioDB == null) {
-            model.addAttribute("error", "No existe un usuario con ese codigo");
+            model.addAttribute("error", "No existe un usuario con ese código");
             return "login";
         }
-        //valida si la contraseña es correcta
-        if (!usuarioDB.getContrasena().equals(usuario.getContrasena())) {
+
+        System.out.println("Contraseña en BD: " + usuarioDB.getContrasena());
+        System.out.println("Contraseña ingresada: " + contrasena);
+
+        // Validar si la contraseña es correcta
+        if (!usuarioDB.getContrasena().equals(contrasena)) {
             model.addAttribute("error", "Contraseña incorrecta");
             return "login";
         }
 
-        session.setAttribute("usuarioLogueado", usuarioDB); //Guarda el usuario en la sesion
-        
-        return "redirect:/principal/index"; //Redirige al la pagina principal despues de iniciar sesion
+        System.out.println("Login exitoso para: " + usuarioDB.getNombre());
+        System.out.println("Rol: " + usuarioDB.getRol().getNombre() + " (ID: " + usuarioDB.getRol().getId() + ")");
+
+        // Guardar el usuario completo en la sesión
+        session.setAttribute("usuarioLogueado", usuarioDB);
+
+        // Redirigir según el rol
+        if (usuarioDB.getRol().getId() == 1) {
+            System.out.println("Redirigiendo a index (Alumno)");
+            return "redirect:/principal/index";
+        } else if (usuarioDB.getRol().getId() == 2) {
+            System.out.println("Redirigiendo a index (Docente)");
+            return "redirect:/principal/index";
+        }
+
+        return "redirect:/principal/index";
     }
 
-    @PostMapping("/logout")
+    @GetMapping("/logout")  //Cambié de @PostMapping a @GetMapping
     public String logoutUsuario(HttpSession session){
-        session.invalidate(); //Invalida la sesion actual
+        System.out.println("=== LOGOUT EJECUTADO ===");
+        if (session != null) {
+            Usuario usuario = (Usuario) session.getAttribute("usuarioLogueado");
+            if (usuario != null) {
+                System.out.println("Cerrando sesión de: " + usuario.getNombre());
+            }
+            session.invalidate();
+        }
+        System.out.println("Sesión cerrada exitosamente");
         return "redirect:/principal/index";
     }
 }
