@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Technology Schools — Docentes</title>
+  <title>Technology Schools — Gestión de Asistencias</title>
 
   <!-- Tipografías -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -31,49 +31,6 @@
       color: var(--texto);
     }
 
-    /* ======= ENCABEZADO ======= */
-            header {
-            padding: 15px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            }
-
-            header h1 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 1.8rem;
-            }
-
-            header nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            }
-
-            header nav a:hover {
-            color: #e6fffa;
-            }
-
-        /* ======= PIE DE PÁGINA ======= */
-            footer {
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            font-size: 0.9rem;
-            }
-
-            footer a {
-            color: #c7ffff;
-            text-decoration: none;
-            }
-
-            footer a:hover {
-            text-decoration: underline;
-            }
-    
     .encabezado-seccion{
       background: linear-gradient(90deg, rgba(46,196,182,0.12), rgba(35,156,145,0.08));
       padding: 36px 20px;
@@ -98,98 +55,77 @@
       padding: 0 20px;
     }
 
-    .rejilla-docentes{
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-    }
-
-    .card-docente{
+    .card-info{
       background: var(--card-bg);
       border-radius: var(--radio);
       box-shadow: 0 8px 20px var(--sombra);
+      padding: 30px;
+      margin-bottom: 30px;
+    }
+
+    .card-info h3{
+      font-family: "Playfair Display", serif;
+      color: var(--turquesa-oscuro);
+      margin-top: 0;
+    }
+
+    .tabla-asistencias{
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--blanco);
+      border-radius: var(--radio);
       overflow: hidden;
-      transition: transform .22s ease, box-shadow .22s ease;
-      display:flex;
-      flex-direction: column;
-      min-height: 180px;
+      box-shadow: 0 4px 12px var(--sombra);
     }
 
-    .card-docente:hover{
-      transform: translateY(-6px);
-      box-shadow: 0 16px 30px rgba(0,0,0,0.12);
-    }
-
-    .card-encabezado{
-      padding: 18px 20px;
+    .tabla-asistencias thead{
       background: linear-gradient(90deg, var(--turquesa), var(--turquesa-oscuro));
       color: var(--blanco);
     }
 
-    .card-encabezado h3{
-      margin: 0;
-      font-family: "Playfair Display", serif;
-      font-size: 1.2rem;
+    .tabla-asistencias th{
+      padding: 15px;
+      text-align: left;
+      font-weight: 600;
     }
 
-    .card-cuerpo{
-      padding: 18px 20px;
-      flex:1;
-      display:flex;
-      flex-direction: column;
-      gap: 10px;
+    .tabla-asistencias td{
+      padding: 12px 15px;
+      border-bottom: 1px solid #e0e0e0;
     }
 
-    .lista-cursos{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
+    .tabla-asistencias tbody tr:hover{
+      background-color: rgba(46,196,182,0.05);
     }
 
-    .curso-chip{
-      display:inline-block;
-      background: rgba(35,156,145,0.08);
-      color: var(--turquesa-oscuro);
-      border: 1px solid rgba(46,196,182,0.14);
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 0.9rem;
-    }
-
-    .sin-cursos{
-      color:#6b8f8d;
-      font-size:0.95rem;
-    }
-
-    .acciones-card{
-      margin-top:auto;
-      display:flex;
-      gap:10px;
-      align-items:center;
-    }
-
-    .btn-ver{
+    .btn-registrar{
       background: var(--turquesa);
       color: var(--blanco);
-      padding: 8px 14px;
+      padding: 12px 24px;
       border-radius: 8px;
       border: none;
       cursor: pointer;
-      text-decoration: none;
-      font-weight:600;
+      font-weight: 600;
+      font-size: 16px;
+      margin-top: 20px;
+      transition: background 0.3s ease;
     }
 
-    /* Fallback / mensaje vacío */
-    .mensaje-vacio{
-      text-align:center;
-      padding: 40px 20px;
-      color:#2f5f5a;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px var(--sombra);
+    .btn-registrar:hover{
+      background: var(--turquesa-oscuro);
+    }
+
+    .select-estado{
+      padding: 8px 12px;
+      border: 2px solid var(--gris-claro);
+      border-radius: 6px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .select-estado:focus{
+      border-color: var(--turquesa);
     }
 
     @media (max-width:600px){
@@ -203,56 +139,99 @@
   <%@ include file="header.jsp" %>
 
   <section class="encabezado-seccion">
-    <h1>Asistencia de Docentes</h1>
-    <p>Registra y consulta la asistencia diaria del personal docente de Technology Schools.</p>
+    <h1>Registro de Asistencias</h1>
+    <p>Gestiona la asistencia diaria de los estudiantes.</p>
+    <c:if test="${sessionScope.usuarioLogueado != null}">
+      <p><strong>Docente: ${sessionScope.usuarioLogueado.nombre}</strong></p>
+    </c:if>
   </section>
 
   <div class="contenedor">
-    <c:choose>
-      <c:when test="${empty docentes}">
-        <div class="mensaje-vacio">
-          <h3>No hay docentes registrados.</h3>
-          <p>Por favor, agrega docentes antes de registrar asistencia.</p>
-        </div>
-      </c:when>
+    <div class="card-info">
+      <h3>Panel de Control Docente</h3>
+      <p>Desde aquí puedes registrar y consultar la asistencia de tus estudiantes.</p>
+      <p><strong>Fecha:</strong> <span id="fecha-actual"></span></p>
+    </div>
 
-      <c:otherwise>
-        <form action="/asistencia/guardar" method="post">
-          <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Nombre del Docente</th>
-                <th>Fecha</th>
-                <th>Estado</th>
-              </tr>
-            </thead>
-            <tbody>
-              <c:forEach var="docente" items="${docentes}">
-                <tr>
-                  <td>${docente.id}</td>
-                  <td>${docente.nombre}</td>
-                  <td><input type="date" name="fecha_${docente.id}" value="${fechaActual}" required></td>
-                  <td>
-                    <select name="estado_${docente.id}" class="asistencia-select" required>
-                      <option value="Presente">Presente</option>
-                      <option value="Tarde">Tarde</option>
-                      <option value="Justificado">Justificado</option>
-                      <option value="Ausente">Ausente</option>
-                    </select>
-                  </td>
-                </tr>
-              </c:forEach>
-            </tbody>
-          </table>
-
-          <button type="submit" class="btn-guardar">Guardar Asistencia</button>
-        </form>
-      </c:otherwise>
-    </c:choose>
+    <!-- Formulario de registro (ejemplo) -->
+    <form>
+      <table class="tabla-asistencias">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre del Estudiante</th>
+            <th>Código</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Datos de ejemplo - Reemplazar con datos reales del backend -->
+          <tr>
+            <td>1</td>
+            <td>Leonardo Diaz</td>
+            <td>s245690</td>
+            <td>
+              <select class="select-estado" name="estado_1">
+                <option value="Presente" selected>Presente</option>
+                <option value="Tarde">Tardanza</option>
+                <option value="Ausente">Ausente</option>
+                <option value="Justificado">Justificado</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Sofia Martinez</td>
+            <td>s245691</td>
+            <td>
+              <select class="select-estado" name="estado_2">
+                <option value="Presente" selected>Presente</option>
+                <option value="Tarde">Tardanza</option>
+                <option value="Ausente">Ausente</option>
+                <option value="Justificado">Justificado</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Mateo Ramirez</td>
+            <td>s245692</td>
+            <td>
+              <select class="select-estado" name="estado_3">
+                <option value="Presente" selected>Presente</option>
+                <option value="Tarde">Tardanza</option>
+                <option value="Ausente">Ausente</option>
+                <option value="Justificado">Justificado</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Isabella Torres</td>
+            <td>s245693</td>
+            <td>
+              <select class="select-estado" name="estado_4">
+                <option value="Presente" selected>Presente</option>
+                <option value="Tarde">Tardanza</option>
+                <option value="Ausente">Ausente</option>
+                <option value="Justificado">Justificado</option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="submit" class="btn-registrar">Guardar Asistencias</button>
+    </form>
   </div>
 
   <%@ include file="footer.jsp" %>
+
+  <script>
+    // Mostrar fecha actual
+    const fecha = new Date();
+    const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById('fecha-actual').textContent = fecha.toLocaleDateString('es-PE', opciones);
+  </script>
 
 </body>
 </html>
