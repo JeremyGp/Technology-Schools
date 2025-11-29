@@ -39,7 +39,8 @@ public class UsuarioRepository implements UsuarioDAO {
     public List<Usuario> listaAlumnos() {
         String sql = "SELECT u.id as id, u.nombre as nombre, u.email as email, u.codigo as codigo, u.contrasena as contrasena, u.fechaCreacion as fechaCreacion, r.id as rol_id, r.nombre as rol_nombre " +
                      "FROM Usuario u " +
-                     "JOIN Rol r ON u.rol_id = r.id ";
+                     "JOIN Rol r ON u.rol_id = r.id "+
+                     "WHERE u.rol_id = 1";
         return jdbcTemplate.query(sql, UsuariorowMapper);
     }
 
@@ -75,4 +76,36 @@ public class UsuarioRepository implements UsuarioDAO {
         List<Usuario> usuarios = jdbcTemplate.query(sql, UsuariorowMapper, codigo);
         return usuarios.isEmpty() ? null : usuarios.get(0); 
     }
+
+    public List<Usuario> listaAlumnosConAsistenciaHoy() {
+        String sql = """
+            SELECT u.id, u.nombre, u.codigo, u.email,
+                COALESCE(
+                    (SELECT a.estado 
+                        FROM Asistencia a 
+                        WHERE a.usuario_id = u.id 
+                        AND a.fecha = CURRENT_DATE
+                        ORDER BY a.id DESC
+                        LIMIT 1),
+                    'Presente'
+                ) AS estado
+            FROM Usuario u
+            WHERE u.rol_id = 1
+            ORDER BY u.id;
+            """;
+
+        return jdbcTemplate.query(sql, (rs, rowNum) -> {
+            Usuario u = new Usuario();
+            u.setId(rs.getInt("id"));
+            u.setNombre(rs.getString("nombre"));
+            u.setCodigo(rs.getString("codigo"));
+            u.setEmail(rs.getString("email"));
+
+            // guardar estado temporal en el objeto
+            u.setEstadoAsistencia(rs.getString("estado"));
+            return u;
+        });
+    }
+
+
 }

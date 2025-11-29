@@ -37,29 +37,6 @@ public class MiControlador {
         return "metricas";
     }
 
-    @GetMapping("/asistencias")
-    public String asistencias(HttpSession session, Model model) {
-        Usuario usuarioLogueado = (Usuario) session.getAttribute("usuarioLogueado");
-
-        // Si no hay sesión, redirigir al login
-        if (usuarioLogueado == null) {
-            return "redirect:/principal/login";
-        }
-
-        // Verificar el rol del usuario
-        // rol_id = 1 → Alumno
-        // rol_id = 2 → Profesor/Docente
-        if (usuarioLogueado.getRol().getId() == 1) {
-            // Es alumno → mostrar vista de asistencias de alumnos
-            return "asistencias";
-        } else if (usuarioLogueado.getRol().getId() == 2) {
-            // Es docente → mostrar vista de asistencias de docentes
-            return "docentes";
-        } else {
-            // Rol desconocido, redirigir al inicio
-            return "redirect:/principal/index";
-        }
-    }
     
     @GetMapping("/docentes")
     public String docentes(HttpSession session, Model model) {

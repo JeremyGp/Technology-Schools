@@ -154,74 +154,38 @@
     </div>
 
     <!-- Formulario de registro (ejemplo) -->
-    <form>
+    <form action="/asistencia/guardar" method="post">
       <table class="tabla-asistencias">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nombre del Estudiante</th>
-            <th>Código</th>
-            <th>Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Datos de ejemplo - Reemplazar con datos reales del backend -->
-          <tr>
-            <td>1</td>
-            <td>Leonardo Diaz</td>
-            <td>s245690</td>
-            <td>
-              <select class="select-estado" name="estado_1">
-                <option value="Presente" selected>Presente</option>
-                <option value="Tarde">Tardanza</option>
-                <option value="Ausente">Ausente</option>
-                <option value="Justificado">Justificado</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Sofia Martinez</td>
-            <td>s245691</td>
-            <td>
-              <select class="select-estado" name="estado_2">
-                <option value="Presente" selected>Presente</option>
-                <option value="Tarde">Tardanza</option>
-                <option value="Ausente">Ausente</option>
-                <option value="Justificado">Justificado</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Mateo Ramirez</td>
-            <td>s245692</td>
-            <td>
-              <select class="select-estado" name="estado_3">
-                <option value="Presente" selected>Presente</option>
-                <option value="Tarde">Tardanza</option>
-                <option value="Ausente">Ausente</option>
-                <option value="Justificado">Justificado</option>
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>Isabella Torres</td>
-            <td>s245693</td>
-            <td>
-              <select class="select-estado" name="estado_4">
-                <option value="Presente" selected>Presente</option>
-                <option value="Tarde">Tardanza</option>
-                <option value="Ausente">Ausente</option>
-                <option value="Justificado">Justificado</option>
-              </select>
-            </td>
-          </tr>
-        </tbody>
+          <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>Nombre del Estudiante</th>
+                  <th>Código</th>
+                  <th>Estado</th>
+              </tr>
+          </thead>
+          <tbody>
+              <c:forEach var="alumno" items="${alumnos}">
+                  <tr>
+                      <td>${alumno.id}</td>
+                      <td>${alumno.nombre}</td>
+                      <td>${alumno.codigo}</td>
+                      <td>
+                          <select class="select-estado" name="estado_${alumno.id}">
+                            <option value="Presente" ${alumno.estadoAsistencia == 'Presente' ? 'selected' : ''}>Presente</option>
+                            <option value="Tarde" ${alumno.estadoAsistencia == 'Tarde' ? 'selected' : ''}>Tardanza</option>
+                            <option value="Ausente" ${alumno.estadoAsistencia == 'Ausente' ? 'selected' : ''}>Ausente</option>
+                            <option value="Justificado" ${alumno.estadoAsistencia == 'Justificado' ? 'selected' : ''}>Justificado</option>
+                        </select>
+                          <input type="hidden" name="idAlumno" value="${alumno.id}">
+                      </td>
+                  </tr>
+              </c:forEach>
+          </tbody>
       </table>
       <button type="submit" class="btn-registrar">Guardar Asistencias</button>
-    </form>
+  </form>
+
   </div>
 
   <%@ include file="footer.jsp" %>

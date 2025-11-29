@@ -8,4 +8,7 @@ public interface UsuarioService {
     void crearUsuario(Usuario usuario);
     Usuario loginUsuario(Usuario usuario);
     Usuario buscarPorCodigo(String email);
+
+    // NUEVO
+    List<Usuario> listaAlumnosConAsistenciaHoy();
 }

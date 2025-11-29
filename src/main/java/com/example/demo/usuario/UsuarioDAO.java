@@ -8,4 +8,7 @@ public interface UsuarioDAO {
     void crearUsuario(Usuario usuario);
     Usuario loginUsuario(Usuario usuario);
     Usuario buscarPorCodigo(String codigo);
+
+    // NECESARIO PARA ASISTENCIAS DOCENTES
+    List<Usuario> listaAlumnosConAsistenciaHoy();
 }

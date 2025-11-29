@@ -280,7 +280,7 @@
                     <div class="rejilla-funcionalidades">
 
                         <div class="tarjeta-funcion">
-                            <a href="/principal/asistencias">
+                            <a href="/asistencia/vista">
                                 <img src="https://cdn-icons-png.flaticon.com/512/3246/3246816.png" alt="Asistencia">
                                 <div class="overlay">ASISTENCIAS<br><small>Control de ingreso de alumnos y docentes</small></div>
                             </a>

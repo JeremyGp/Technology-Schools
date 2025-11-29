@@ -3,7 +3,6 @@ package com.example.demo.usuario;
 import java.time.LocalDate;
 
 import com.example.demo.rol.Rol;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Usuario {
     private int id;
@@ -12,8 +11,10 @@ public class Usuario {
     private String codigo;
     private String contrasena;
     private Rol rol;
-    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaCreacion;
+
+    private String estadoAsistencia; // no va a la BD
+
 
     private transient String confirmarContrasena; //campo temporal para confirmar contraseña
 
@@ -53,7 +54,7 @@ public class Usuario {
     public String getCodigo() {
         return codigo;
     }
-    public void setCodigol(String codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
     public String getContrasena() {
@@ -82,5 +83,13 @@ public class Usuario {
     public void setConfirmarContrasena(String confirmarContrasena) {
         this.confirmarContrasena = confirmarContrasena;
     }   
+
+    public String getEstadoAsistencia() { 
+        return estadoAsistencia; 
+    }
+
+    public void setEstadoAsistencia(String estado) { 
+        this.estadoAsistencia = estado; 
+    }
 
 }

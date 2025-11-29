@@ -158,38 +158,48 @@
       <thead>
         <tr>
           <th>Fecha</th>
-          <th>Hora</th>
           <th>Estado</th>
           <th>Observación</th>
         </tr>
       </thead>
       <tbody>
-        <!-- Datos de ejemplo - Reemplazar con datos reales del backend -->
-        <tr>
-          <td>26/11/2025</td>
-          <td>08:00 AM</td>
-          <td><span class="estado-presente">Presente</span></td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>25/11/2025</td>
-          <td>08:15 AM</td>
-          <td><span class="estado-tarde">Tardanza</span></td>
-          <td>Llegó 15 minutos tarde</td>
-        </tr>
-        <tr>
-          <td>24/11/2025</td>
-          <td>-</td>
-          <td><span class="estado-ausente">Ausente</span></td>
-          <td>No asistió</td>
-        </tr>
-        <tr>
-          <td>23/11/2025</td>
-          <td>-</td>
-          <td><span class="estado-justificado">Justificado</span></td>
-          <td>Cita médica</td>
-        </tr>
-      </tbody>
+    <c:choose>
+        <c:when test="${empty asistencias}">
+            <tr>
+                <td colspan="4" style="text-align:center; padding:20px;">
+                    No se encontraron registros de asistencia.
+                </td>
+            </tr>
+        </c:when>
+
+        <c:otherwise>
+            <c:forEach var="a" items="${asistencias}">
+                <tr>
+                    <td>${a.fecha}</td>
+
+                    <td>
+                        <span class="
+                            ${a.estado == 'Presente' ? 'estado-presente' : ''}
+                            ${a.estado == 'Tarde' ? 'estado-tarde' : ''}
+                            ${a.estado == 'Ausente' ? 'estado-ausente' : ''}
+                            ${a.estado == 'Justificado' ? 'estado-justificado' : ''}
+                        ">${a.estado}</span>
+                    </td>
+                    <td>
+                      <c:choose>
+                          <c:when test="${a.estado == 'Presente'}">Asistió sin incidencias</c:when>
+                          <c:when test="${a.estado == 'Tarde'}">Llegó tarde</c:when>
+                          <c:when test="${a.estado == 'Ausente'}">No asistió</c:when>
+                          <c:when test="${a.estado == 'Justificado'}">Falta justificada</c:when>
+                          <c:otherwise>-</c:otherwise>
+                      </c:choose>
+                  </td>
+                </tr>
+            </c:forEach>
+        </c:otherwise>
+    </c:choose>
+</tbody>
+
     </table>
   </div>
 

@@ -27,18 +27,17 @@ CREATE TABLE Categoria (
 CREATE TABLE Matriculas (
     id INT PRIMARY KEY AUTO_INCREMENT,
     usuario_id INT NOT NULL,
-    categoria_precio DECIMAL(10,2) NOT NULL,
     categoria_id INT NOT NULL,
-    fechaCreacion date not null,
-    FOREIGN KEY (categoria_id) REFERENCES Categoria(id),
-    FOREIGN KEY (categoria_precio) REFERENCES Categoria(id),
-    FOREIGN KEY (usuario_id) REFERENCES Usuario(id)
-    
+    categoria_precio DECIMAL(10,2) NOT NULL,
+    fechaCreacion DATE NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES Usuario(id),
+    FOREIGN KEY (categoria_id) REFERENCES Categoria(id)
 );
 
 -- Detalles de cada compra (productos comprados y cantidades)
 CREATE TABLE Asistencia (
     id INT PRIMARY KEY AUTO_INCREMENT,
+    estado VArCHAR(50) NOT NULL,
     usuario_id INT NOT NULL,
     categoria_id INT NOT NULL,
     fecha DATE NOT NULL,
