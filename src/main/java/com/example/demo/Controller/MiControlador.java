@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.usuario.Usuario;
+
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -53,7 +54,16 @@ public class MiControlador {
             // Si es alumno, redirigir a su vista
             return "redirect:/principal/asistencias";
         }
+
+        
     }
+
+    @GetMapping("/matricular")
+    public String matricular(Model model) {
+    model.addAttribute("estudiante", new Usuario()); // Puedes cambiar "Usuario" por tu entidad real
+    return "matricular"; // Archivo matricular.jsp en /WEB-INF/views
+}
+
 
     @GetMapping("/index")
     public String index(Model model) {
