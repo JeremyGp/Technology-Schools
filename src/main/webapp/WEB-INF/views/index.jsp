@@ -287,7 +287,7 @@
                         </div>
 
                         <div class="tarjeta-funcion">
-                            <a href="/matricular/vista">
+                            <a href="/principal/matriculas">
                                 <img src="https://cdn-icons-png.flaticon.com/512/3597/3597075.png" alt="Matrículas">
                                 <div class="overlay">MATRÍCULAS<br><small>Registro de nuevos estudiantes</small></div>
                             </a>

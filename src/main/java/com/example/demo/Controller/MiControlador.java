@@ -38,6 +38,14 @@ public class MiControlador {
         return "metricas";
     }
 
+    @GetMapping("/matriculas")
+    public String matriculas(Model model) {
+        return "matriculas";
+
+    }
+    
+
+
     
     @GetMapping("/docentes")
     public String docentes(HttpSession session, Model model) {
@@ -57,12 +65,29 @@ public class MiControlador {
 
         
     }
+    @GetMapping("/solicitudes")
+     public String solicitudes(HttpSession session, Model model) {
+
+    Usuario usuarioLogueado = (Usuario) session.getAttribute("usuarioLogueado");
+
+    // Si no está logueado → Login
+    if (usuarioLogueado == null) {
+        return "redirect:/principal/login";
+    }
+
+    // Si NO es docente → redirigir a index
+    if (usuarioLogueado.getRol().getId() != 2) {
+        return "redirect:/principal/index";
+    }
+
+    // Si es DOCENTE → mostrar solicitudes.jsp
+    return "solicitudes";
+}
 
     @GetMapping("/matricular")
-    public String matricular(Model model) {
-    model.addAttribute("estudiante", new Usuario()); // Puedes cambiar "Usuario" por tu entidad real
-    return "matricular"; // Archivo matricular.jsp en /WEB-INF/views
-}
+       public String matricular(Model model) {
+         return "matricular";  
+    }
 
 
     @GetMapping("/index")

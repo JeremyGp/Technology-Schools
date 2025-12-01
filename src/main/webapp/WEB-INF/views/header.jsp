@@ -156,6 +156,11 @@
                 <li><a href="/principal/nosotros">Nosotros</a></li>
                 <li><a href="/principal/contacto">Contáctanos</a></li>
 
+                
+                 <c:if test="${not empty sessionScope.usuarioLogueado && sessionScope.usuarioLogueado.rol.id == 2}">
+                 <li><a href="/principal/solicitudes">Solicitudes</a></li>
+                 </c:if>
+
                 <!-- Solo mostrar "Asistencias" si hay sesión activa -->
                 <c:if test="${not empty sessionScope.usuarioLogueado}">
                     <li><a href="/principal/asistencias">Asistencias</a></li>
