@@ -200,36 +200,26 @@
 
         <div class="rejilla-eventos">
             <div class="item-evento">
-                <img src="https://scontent.flim28-2.fna.fbcdn.net/v/t39.30808-6/485019057_1383080449318157_7840963588689984618_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=C-UgiGqTSVwQ7kNvwEXQAzZ&_nc_oc=AdnQtpCIDrhcZWhBlybSZKsVLaAwPHBW8Di66EJUlI5Y-HCjmdZZPYOQ_c85nUwRrVY&_nc_zt=23&_nc_ht=scontent.flim28-2.fna&_nc_gid=KUUOaWbjdeGbCGjphkM-Fg&oh=00_AffAjQVH7W5f95gzYZk75WuNSyOZezT_cTYsSqiR_9sNtA&oe=690048EB" 
-                alt="Feria Empresarial">
                 <h4>Feria Empresarial</h4>
                 <p>Feria donde los estudiantes muestran sus capacidades de ventas de productos hacia un cliente específico</p>
             </div>
 
             <div class="item-evento">
-                <img src="https://scontent.flim28-2.fna.fbcdn.net/v/t39.30808-6/493106109_1258013746326502_96013375882686465_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=BaE-R-N1wqMQ7kNvwEzqiLp&_nc_oc=Admo5M0cVPlF-Aaon7-BGLGEpN8RsDIJ0BD-D7d4l0_OJEcn1xIBO8d9tK48zn9JK8s&_nc_zt=23&_nc_ht=scontent.flim28-2.fna&_nc_gid=73DKD_sSgivloFticurrXQ&oh=00_AfcD7fDZrCpgmjUC9aiv1MuzhD6DUyhAR5AVZMnUy9YXzg&oe=6900779F" 
-                alt="Campeonato Deportivo">
                 <h4>Campeonato Deportivo</h4>
                 <p>Participa en fútbol, vóley, básquet y atletismo representando a tu aula. La disciplina y el trabajo en equipo son la clave para la victoria.</p>
             </div>
 
             <div class="item-evento">
-                <img src="https://scontent.flim38-1.fna.fbcdn.net/v/t39.30808-6/489088931_1241348567993020_9001338763575318830_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=tuYVuCfCyd0Q7kNvwGIuH4S&_nc_oc=AdnKFX-VuiY52QiJdkHRQVHS5E7PG_-4OXxPDqUgiMdNAo_uuB3aaFOKbs2_GSMtVBY&_nc_zt=23&_nc_ht=scontent.flim38-1.fna&_nc_gid=MRSva7UtUraZiYe7y-tB7g&oh=00_AfdzdAexAompK3zsHxMuhIfPaiE0GPco3SYF_H15cJoibA&oe=690074C4" 
-                alt="Semana del Logro">
                 <h4>Semana del Logro</h4>
                 <p>Los estudiantes presentan proyectos que integran creatividad, tecnología y sostenibilidad. ¡Una oportunidad para descubrir futuros científicos!</p>
             </div>
 
             <div class="item-evento">
-                <img src="https://scontent.flim33-1.fna.fbcdn.net/v/t39.30808-6/515734414_1153831163432385_4499082533611556861_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=BHTsGnv7CEwQ7kNvwFpU6Wf&_nc_oc=AdkQrKn9OwmP2UDiM--FY_oklnMQvXt9C1afpxBvX2MRTmvevk0xdkVZMQgK84iks-w&_nc_zt=23&_nc_ht=scontent.flim33-1.fna&_nc_gid=EAfPEGP354nbRFsfPY5Flw&oh=00_Afcly-XLohbjw4mG88bMDViOdnftNaffnk7FLbOaEqM-MA&oe=690074E9" 
-                alt="Feria Vocacional">
                 <h4>Feria Vocacional</h4>
                 <p>Diferentes universidades e institutos vienen a exponer sobre las distintas carreras que tienen, donde el estudiante podrá recibir información de su futuro lugar de estudio</p>
             </div>
 
             <div class="item-evento">
-                <img src="https://scontent.flim38-1.fna.fbcdn.net/v/t39.30808-6/492587402_1258024479658762_8858177421608316575_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=2491PTvuUGUQ7kNvwF37BSn&_nc_oc=Adn_eueZEwpZVATqbrm9LJn-l2Duu9kDzOmYsbRiVzftrdM7HmgtH-TuU_J0EZZMAEI&_nc_zt=23&_nc_ht=scontent.flim38-1.fna&_nc_gid=c4TsNNhHJWbGXZPeTISfBw&oh=00_Afdz000oPMm2TITnvPbv3Pp6ekFFZLtJhKIIo7Ne3dr2-g&oe=69005334" 
-                alt="Semana de Aniversario">
                 <h4>Semana de Aniversario</h4>
                 <p>Una semana donde los estudiantes podrán participar en concursos entre aulas, danzas y distintos juegos por el Aniversario del colegio.</p>
             </div>
